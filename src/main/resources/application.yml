@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: springboot-mqtt-demo
+
+mqtt:
+  # 公共测试 broker；本地 Mosquitto 可改为 tcp://localhost:1883
+  broker-url: tcp://broker.emqx.io:1883
+  client-id: springboot-mqtt-demo
+  username: ""
+  password: ""
+  topics:
+    - springboot/mqtt/demo
+    - opcua/demo/data
+  default-topic: springboot/mqtt/demo
+  qos: 1
+  connection-timeout: 10
+  keep-alive: 60
+  automatic-reconnect: true
+  clean-session: true
+
+opcua:
+  server-enabled: true
+  server-port: 12686
+  endpoint-url: opc.tcp://localhost:12686/milo
+  topic: opcua/demo/data
+  publish-interval: 1000
+  sampling-interval: 500
+
+logging:
+  charset:
+    console: UTF-8
+  level:
+    com.example.mqtt: INFO
+    org.springframework.integration.mqtt: INFO
